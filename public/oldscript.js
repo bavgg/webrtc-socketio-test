@@ -49,7 +49,6 @@ let createAnswer = async (offer) => {
 
   let answer = await peerConnection.createAnswer();
   await peerConnection.setLocalDescription(answer);
-  console.log("test");
 };
 
 let addAnswer = async (answer) => {
@@ -62,23 +61,15 @@ let addAnswer = async (answer) => {
 init();
 
 const offerButton = document.getElementById("offerButton");
-var isAdmin = false;
+
 offerButton.addEventListener("click", () => {
   createOffer();
-  isAdmin = true;
 });
 
 socket.on("offer", async (offer) => {
-  console.log("exec");
-  if (!isAdmin) {
-    console.log("test");
-    createAnswer(offer);
-  }
+  createAnswer(offer);
 });
 
 socket.on("answer", async (answer) => {
-  console.log("answer");
-  if (isAdmin) {
-    await addAnswer(answer);
-  }
+  await addAnswer(answer);
 });
