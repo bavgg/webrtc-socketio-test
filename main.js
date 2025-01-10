@@ -8,9 +8,9 @@ const io = new Server(server);
 
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-  res.status(200).send("Hello, World!");
-});
+// app.get("/", (req, res) => {
+//   res.status(200).send("Hello, World!");
+// });
 
 io.on("connection", (socket) => {
   console.log("A user connected");
